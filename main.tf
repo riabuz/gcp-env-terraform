@@ -1,14 +1,14 @@
 provider "google" {
   project     = "gcp-env-terraform"
-  credentials = "${file("credentials.json")}"
+  credentials = file("credentials.json")
   region      = "us-central1"
   zone        = "us-central1-c"
 }
 
 resource "google_compute_instance" "my_instance" {
   name                      = "${var.env}-${var.region}-${var.app_name}-instance"
-  machine_type              = "${var.machine_type}"
-  zone                      = "${var.zone}"
+  machine_type              = var.machine_type
+  zone                      = var.zone
   allow_stopping_for_update = true
 
   boot_disk {
