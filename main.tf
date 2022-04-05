@@ -7,13 +7,13 @@ provider "google" {
 
 resource "google_compute_instance" "my_instance" {
   name                      = "${var.env}-${var.region}-${var.app_name}-instance"
-  machine_type              = var.machine_type
+  machine_type              = var.instance_params.machine_type
   zone                      = var.zone
-  allow_stopping_for_update = true
+  allow_stopping_for_update = var.instance_params.allow_stopping_for_update
 
   boot_disk {
     initialize_params {
-      image = var.os_image
+      image = var.instance_params.os_image
     }
   }
 
@@ -33,7 +33,7 @@ resource "google_compute_network" "my_vpc" {
 
 resource "google_compute_subnetwork" "my_subnet" {
   name          = "${var.env}-${var.app_name}-subnet"
-  ip_cidr_range = "10.20.0.0/16"
+  ip_cidr_range = var.subnet_cidr_range
   region        = var.region
   network       = google_compute_network.my_vpc.id
 }
