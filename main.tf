@@ -1,8 +1,8 @@
 provider "google" {
   project     = "gcp-env-terraform"
   credentials = file("credentials.json")
-  region      = "us-central1"
-  zone        = "us-central1-c"
+  region      = var.region
+  zone        = var.zone
 }
 
 resource "google_compute_instance" "my_instance" {
@@ -19,7 +19,6 @@ resource "google_compute_instance" "my_instance" {
 
   network_interface {
     network = "default"
-
     access_config {
       // needed even if empty to ensure the instance is accessible over the internet 
     }
