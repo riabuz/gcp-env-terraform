@@ -1,3 +1,11 @@
+variable "project" {
+  description = "The name of your project for which you would like to deploy your resources"
+}
+
+variable "credentials_file" {
+  description = "The path to find the credentials of your service account"
+}
+
 variable "region" {
   description = "The region in which you would like to deploy your resources"
 }
@@ -8,6 +16,10 @@ variable "zone" {
 
 variable "env" {
   description = "The environment in which you would like to deploy your resources i.e. dev/test/prod"
+}
+
+variable "os_image" {
+  description = "The operating system you would like your VM to run on"
 }
 
 variable "app_name" {

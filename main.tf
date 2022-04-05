@@ -1,6 +1,6 @@
 provider "google" {
-  project     = "gcp-env-terraform"
-  credentials = file("credentials.json")
+  project     = var.project
+  credentials = var.credentials_file
   region      = var.region
   zone        = var.zone
 }
@@ -13,7 +13,7 @@ resource "google_compute_instance" "my_instance" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
+      image = var.os_image
     }
   }
 
