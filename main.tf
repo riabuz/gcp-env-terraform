@@ -18,9 +18,22 @@ resource "google_compute_instance" "my_instance" {
   }
 
   network_interface {
-    network = "default"
+    network    = google_compute_network.my_vpc.self_link
+    subnetwork = google_compute_subnetwork.my_subnet.self_link
     access_config {
       // needed even if empty to ensure the instance is accessible over the internet 
     }
   }
+}
+
+resource "google_compute_network" "my_vpc" {
+  name                    = "${var.env}-${var.app_name}-vpc"
+  auto_create_subnetworks = false
+}
+
+resource "google_compute_subnetwork" "my_subnet" {
+  name          = "${var.env}-${var.app_name}-subnet"
+  ip_cidr_range = "10.20.0.1/16"
+  region        = var.region
+  network       = google_compute_network.my_vpc.id
 }
