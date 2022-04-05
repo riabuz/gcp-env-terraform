@@ -33,7 +33,7 @@ resource "google_compute_network" "my_vpc" {
 
 resource "google_compute_subnetwork" "my_subnet" {
   name          = "${var.env}-${var.app_name}-subnet"
-  ip_cidr_range = "10.20.0.1/16"
+  ip_cidr_range = "10.20.0.0/16"
   region        = var.region
   network       = google_compute_network.my_vpc.id
 }
