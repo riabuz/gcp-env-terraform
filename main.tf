@@ -6,9 +6,9 @@ provider "google" {
 }
 
 resource "google_compute_instance" "my_instance" {
-  name                      = "terraform-instance"
-  machine_type              = "f1-micro"
-  zone                      = "us-central1-a"
+  name                      = "${var.env}-${var.region}-${var.app_name}"
+  machine_type              = var.machine_type
+  zone                      = var.zone
   allow_stopping_for_update = true
 
   boot_disk {
