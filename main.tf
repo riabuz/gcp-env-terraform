@@ -7,8 +7,8 @@ provider "google" {
 
 resource "google_compute_instance" "my_instance" {
   name                      = "${var.env}-${var.region}-${var.app_name}-instance"
-  machine_type              = var.machine_type
-  zone                      = var.zone
+  machine_type              = "${var.machine_type}"
+  zone                      = "${var.zone}"
   allow_stopping_for_update = true
 
   boot_disk {
