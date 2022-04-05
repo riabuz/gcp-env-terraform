@@ -1,2 +1,2 @@
 # gcp-env-terraform
-Terraform code to provision a development environment in the Google Cloud Platform 
+Basic Terraform configuration for infrastructure deployed on the Google Cloud Platform. 
